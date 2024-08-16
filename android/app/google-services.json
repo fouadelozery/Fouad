@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "668950021365",
+    "project_id": "itig4-1ac59",
+    "storage_bucket": "itig4-1ac59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668950021365:android:8e3fdfd77b4dcd5d6f71bc",
+        "android_client_info": {
+          "package_name": "com.example.flutterf"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcZubhCfv24Zwhbu8IJ3aQfpfo1QKfJf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
