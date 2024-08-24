@@ -1,9 +1,13 @@
 import 'package:dio/dio.dart';
-import 'package:flutterf/ProductsModel.dart';
+import 'package:flutterf/Product_model.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiProvider {
   ProductsModel? productsList;
+  ProductsModel? categoryList;
 // final String baseUrl = "https://dummyjson.com";
 
   Future<ProductsModel?> getProducts() async {
@@ -11,7 +15,9 @@ class ApiProvider {
 
     try {
       Response response = await Dio().get('https://dummyjson.com/products',
-          queryParameters: {"select": "id,title,description,price,thumbnail"},
+          queryParameters: {
+            "select": "id,title,description,category,price,thumbnail,"
+          },
           options: Options(headers: {
             "Authorization": "Bearer ${prefs.getString("userToken")}"
           }));
@@ -28,6 +34,28 @@ class ApiProvider {
       print(e.toString());
     }
     return null;
+  }
+
+  Future<List<String>> fetchCategories() async {
+    final response = await http
+        .get(Uri.parse('https://dummyjson.com/products?select=category'));
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      return data.map((item) => item['name'].toString()).toList();
+    } else {
+      throw Exception('Failed to load categories');
+    }
+  }
+
+  Future<List<String>> fetchProducts(String category) async {
+    final response = await http.get(
+        Uri.parse('https://dummyjson.com/products?select=category=$category'));
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      return data.map((item) => item['name'].toString()).toList();
+    } else {
+      throw Exception('Failed to load products');
+    }
   }
 
   userLogin({required String userName, required String password}) async {

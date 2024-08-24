@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterf/AboutUs.dart';
+import 'package:flutterf/HomePage.dart';
 import 'package:flutterf/LoginScreen.dart';
 
 class Registerpage extends StatelessWidget {
@@ -26,7 +28,7 @@ class Registerpage extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 32.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.amber),
+                      color: Colors.blue),
                 ),
                 const SizedBox(height: 24.0),
                 TextFormField(
@@ -79,7 +81,7 @@ class Registerpage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      backgroundColor: Colors.amber,
+                      backgroundColor: Colors.blue,
                     ),
                     onPressed: () async {
                       if (_formKey.currentState?.validate() ?? false) {
@@ -95,6 +97,10 @@ class Registerpage extends StatelessWidget {
                       }).catchError((error) {
                         print(error.toString());
                       });
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Aboutus()));
                     },
                     child: const Text(
                       'Register',
@@ -114,7 +120,7 @@ class Registerpage extends StatelessWidget {
                   },
                   child: const Text(
                     'Have an account? Login',
-                    style: TextStyle(color: Colors.amber),
+                    style: TextStyle(color: Colors.red),
                   ),
                 ),
               ],

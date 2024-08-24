@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutterf/AboutUs.dart';
+
+import 'package:flutterf/HomePage.dart';
+import 'package:flutterf/RegisterPage.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -32,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(
                       fontSize: 32.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.amber),
+                      color: Colors.blue),
                 ),
                 const SizedBox(height: 24.0),
                 TextFormField(
@@ -85,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      backgroundColor: Colors.amber,
+                      backgroundColor: Colors.blue,
                     ),
                     onPressed: () async {
                       if (_formKey.currentState?.validate() ?? false) {
@@ -93,8 +97,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         await FirebaseAuth.instance.signInWithEmailAndPassword(
                             email: _emailController.text,
                             password: _passwordController.text);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text("Email Is found")));
+                        // ScaffoldMessenger.of(context).showSnackBar(
+                        //  const SnackBar(content: Text("Email Is found")));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Aboutus()));
+
                         //ApiProvider().userLogin(
                         //userName: _emailController.text,
                         //password: _passwordController.text);
@@ -109,11 +118,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 16.0),
                 TextButton(
                   onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Registerpage()));
 // Navigate to register screen
                   },
                   child: const Text(
                     'Don\'t have an account? Register',
-                    style: TextStyle(color: Colors.blue),
+                    style: TextStyle(color: Colors.red),
                   ),
                 ),
               ],

@@ -46,6 +46,7 @@ class Product {
   final int? id;
   final String? title;
   final String? description;
+  final Category? category;
   final double? price;
   final String? thumbnail;
 
@@ -53,6 +54,7 @@ class Product {
     this.id,
     this.title,
     this.description,
+    this.category,
     this.price,
     this.thumbnail,
   });
@@ -61,6 +63,7 @@ class Product {
         id: json["id"],
         title: json["title"],
         description: json["description"],
+        category: categoryValues.map[json["category"]]!,
         price: json["price"]?.toDouble(),
         thumbnail: json["thumbnail"],
       );
@@ -69,7 +72,38 @@ class Product {
         "id": id,
         "title": title,
         "description": description,
+        "category": categoryValues.reverse[category],
         "price": price,
         "thumbnail": thumbnail,
       };
+}
+
+enum Category {
+  BEAUTY,
+  FRAGRANCES,
+  FURNITURE,
+  GROCERIES,
+  HOME_DECORATION,
+  KITCHEN_ACCESSORIES
+}
+
+final categoryValues = EnumValues({
+  "beauty": Category.BEAUTY,
+  "fragrances": Category.FRAGRANCES,
+  "furniture": Category.FURNITURE,
+  "groceries": Category.GROCERIES,
+  "home-decoration": Category.HOME_DECORATION,
+  "kitchen-accessories": Category.KITCHEN_ACCESSORIES
+});
+
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
 }
