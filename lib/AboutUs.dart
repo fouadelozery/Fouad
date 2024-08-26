@@ -12,7 +12,7 @@ class Aboutus extends StatefulWidget {
 
 class _MyWidgetState extends State<Aboutus> {
   int currentindex = 0;
-  List screen = [const HomePage(), const Catogryproduct(), const Person()];
+  List screen = [const HomePage(), const CategoryProduct(), const Person()];
 
   @override
   Widget build(BuildContext context) {

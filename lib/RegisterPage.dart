@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterf/AboutUs.dart';
-import 'package:flutterf/HomePage.dart';
 import 'package:flutterf/LoginScreen.dart';
 
 class Registerpage extends StatelessWidget {

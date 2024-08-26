@@ -1,52 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutterf/ApiProvider.dart';
 import 'package:flutterf/Product_model.dart';
-
-import 'package:flutterf/categorey.dart';
 import 'package:flutterf/custom_main_product_card.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  final List<Category1> names = const [
-    Category1(
-      name: "fouad",
-      message: "this is my name",
-      price: 90,
-      image: 'hfiohfdaih',
-    ),
-    Category1(
-      name: "samy",
-      message: "this is my name",
-      price: 70,
-      image: 'bjvbjbv',
-    ),
-    Category1(
-      name: "ramadan",
-      message: "this is my name",
-      price: 50,
-      image: 'gfdiu',
-    ),
-    Category1(
-      name: "ebrahiem",
-      message: "this is my name",
-      price: 30,
-      image: 'fgu',
-    ),
-    Category1(
-        name: "elozery", message: "this is my name", price: 20, image: 'yuufj'),
-  ];
+class ShowProductsPage extends StatefulWidget {
+  const ShowProductsPage({super.key});
 
   @override
+  State<ShowProductsPage> createState() => _ShowProductsPageState();
+}
+
+class _ShowProductsPageState extends State<ShowProductsPage> {
+  @override
   Widget build(BuildContext context) {
+    String categoryName = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Text(
-          "HOME",
-          style: TextStyle(color: Colors.black, fontSize: 25),
+          "products category page",
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.blue,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -54,7 +32,7 @@ class HomePage extends StatelessWidget {
           vertical: 48,
         ),
         child: FutureBuilder(
-          future: ApiProvider().getProducts(),
+          future: ApiProvider().getProductsCategory(categoryName),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               ProductsModel data = snapshot.data!;
