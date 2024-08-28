@@ -63,7 +63,7 @@ class Product {
         id: json["id"],
         title: json["title"],
         description: json["description"],
-        category: categoryValues.map[json["category"]]!,
+        category: categoryValues.map[json["category"]],
         price: json["price"]?.toDouble(),
         thumbnail: json["thumbnail"],
       );

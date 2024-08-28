@@ -62,7 +62,7 @@ class CustomMainProductCard extends StatelessWidget {
                 Text(
                   product.price.toString(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 22,
                   ),
